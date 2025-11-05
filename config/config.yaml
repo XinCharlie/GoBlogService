@@ -1,0 +1,25 @@
+server:
+  port: "9090"
+  mode: "debug"
+
+database:
+  host: "localhost"
+  port: 3306
+  user: "root"
+  password: ""
+  dbname: "Test"
+  sslmode: "disable"
+  max_idle_conns: 10
+  max_open_conns: 100
+
+jwt:
+  key: "123456789"
+  issuer: "https://yourdomain.com"
+  audience: "jwt-auth-api"
+  accessTokenExpiryHours: 24
+  refreshTokenExpiryDays: 7
+
+logging:
+  level: "info"
+  format: "json"
+
