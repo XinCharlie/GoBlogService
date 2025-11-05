@@ -1,125 +1,130 @@
-个人博客系统后端
+markdown
+# 个人博客系统后端
+**作者**: Charlie
+**创建时间**: 2025-11-06 
+**最后更新**: 2025-11-06 
+**版本**: v1.0.0
+
 基于 Go + Gin + GORM 开发的个人博客系统后端，提供完整的文章管理、用户认证和评论功能。
 
-📋 项目特性
-✅ 用户注册与登录（JWT认证）
+## 📋 项目特性
 
-✅ 博客文章CRUD操作
+- ✅ 用户注册与登录（JWT认证）
+- ✅ 博客文章CRUD操作
+- ✅ 文章评论功能
+- ✅ Swagger API文档
+- ✅ 密码加密存储
+- ✅ 权限控制（用户只能操作自己的资源）
+- ✅ 完整的错误处理和日志记录
 
-✅ 文章评论功能
+## 🛠 技术栈
 
-✅ Swagger API文档
+- **编程语言**: Go 1.21+
+- **Web框架**: Gin
+- **ORM**: GORM
+- **数据库**: MySQL 8.0+
+- **认证**: JWT
+- **文档**: Swagger/OpenAPI 3.0
+- **密码加密**: bcrypt
 
-✅ 密码加密存储
-
-✅ 权限控制（用户只能操作自己的资源）
-
-✅ 完整的错误处理和日志记录
-
-🛠 技术栈
-编程语言: Go 1.21+
-
-Web框架: Gin
-
-ORM: GORM
-
-数据库: MySQL 8.0+
-
-认证: JWT
-
-文档: Swagger/OpenAPI 3.0
-
-密码加密: bcrypt
-
-📦 项目结构
-text
+## 📦 项目结构
+```bash
 GoBlogService/
-├── main.go                # 应用入口
+├── main.go # 应用入口
 ├── config/
-│   ├── config.go          # 配置管理
-│   └── config.yaml        # 配置文件
+│ ├── config.go # 配置管理
+│ └── config.yaml # 配置文件
 ├── models/
-│   ├── user.go            # 用户模型
-│   ├── post.go            # 文章模型
-│   └── comment.go         # 评论模型
+│ ├── user.go # 用户模型
+│ ├── post.go # 文章模型
+│ └── comment.go # 评论模型
 ├── controllers/
-│   ├── auth.go            # 认证控制器
-│   ├── post.go            # 文章控制器
-│   └── comment.go         # 评论控制器
+│ ├── auth.go # 认证控制器
+│ ├── post.go # 文章控制器
+│ └── comment.go # 评论控制器
 ├── middleware/
-│   ├── auth.go            # JWT认证中间件
-│   └── logger.go          # 日志中间件
+│ ├── auth.go # JWT认证中间件
+│ └── logger.go # 日志中间件
 ├── utils/
-│   ├── jwt.go             # JWT工具
-│   └── password.go        # 密码工具
+│ ├── jwt.go # JWT工具
+│ └── password.go # 密码工具
 ├── database/
-│   ├── database.go        # 数据库连接
-│   └── seeds.go           # 样本数据
-└── docs/                  # Swagger文档
-🚀 快速开始
-环境要求
-Go 1.21 或更高版本
+│ └── database.go # 数据库连接
+└── docs/ # Swagger文档
+```
 
-MySQL 8.0 或更高版本
+## 🚀 **快速开始**
 
-Git
+### 环境要求
 
-安装步骤
-克隆项目
+- Go 1.21 或更高版本
+- MySQL 8.0 或更高版本
+- Git
 
-bash
-git clone <repository-url>
-cd blog-backend
-安装依赖
+### 安装步骤
 
-bash
-go mod tidy
-安装 Swag 工具
-
-bash
-go install github.com/swaggo/swag/cmd/swag@latest
-生成 Swagger 文档
-
-bash
-swag init
-数据库配置
+1. **克隆项目**
+   ```bash
+   git clone <repository-url>
+   cd blog-backend
+   ```
+2. **安装依赖**
+   ```bash
+   go mod tidy
+   ```
+3. **安装 Swag 工具**
+   ```bash
+   go install github.com/swaggo/swag/cmd/swag@latest
+   ```
+4. **生成 Swagger 文档**
+   ```bash
+   swag init
+   ```
+5. **数据库配置**
 
 创建 MySQL 数据库：
 
-sql
+```sql
 CREATE DATABASE blog CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-环境变量配置
+```
+6. **环境变量配置**
 
-创建 .env 文件（可选）：
+创建 config/config.yaml文件：
+```yaml
+server:
+  port: "9090"
+  mode: "debug"
 
-env
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=root
-DB_PASSWORD=yourpassword
-DB_NAME=blog
-JWT_SECRET=your-super-secret-jwt-key
-SERVER_PORT=9090
+database:
+  host: "localhost"
+  port: 3306
+  user: "root"
+  password: ""
+  dbname: "Test"
+```
 或者直接修改 config/config.go 中的默认值。
 
-启动应用
-开发模式
+# 启动应用
+1. **开发模式**
 
-bash
+```bash
 go run main.go
-构建并运行
+```
+2. **构建并运行**
 
-bash
-go build -o blog-backend
-./blog-backend
-使用 Air 热重载（开发推荐）
+```bash
+go build -o GoBlogService
+./GoBlogService
+```
+3. **使用 Air 热重载（开发推荐）**
 
-bash
+```bash
 # 安装 air
 go install github.com/cosmtrek/air@latest
 
 # 运行
 air
+```
 应用启动后，访问以下地址：
 
 应用API: http://localhost:9090
@@ -128,22 +133,23 @@ Swagger文档: http://localhost:9090/swagger/index.html
 
 健康检查: http://localhost:9090/health
 
-📚 API 文档
-认证接口
-1. 用户注册
-URL: POST /auth/register
+# 📚 API 文档
+## 认证接口
+### 1. **用户注册**
+   **URL**: ```POST /auth/register```
 
-Body:
+**请求体**:
 
-json
+```json
 {
   "username": "testuser",
   "password": "password123",
   "email": "test@example.com"
 }
-响应:
+```
+**响应**:
 
-json
+```json
 {
   "message": "User registered successfully",
   "user": {
@@ -152,19 +158,21 @@ json
     "email": "test@example.com"
   }
 }
-2. 用户登录
-URL: POST /auth/login
+```
+### 2. **用户登录**
+**URL**: ```POST /auth/login```
 
-Body:
+**请求体**:
 
-json
+```json
 {
   "username": "testuser",
   "password": "password123"
 }
-响应:
+```
+**响应**:
 
-json
+```json
 {
   "message": "Login successful",
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -174,15 +182,17 @@ json
     "email": "test@example.com"
   }
 }
-文章接口
-3. 获取文章列表
-URL: GET /posts
+```
 
-认证: 不需要
+## 文章接口
+### 3. 获取文章列表
+**URL**: ```GET /posts```
 
-响应:
+**认证**: 不需要
 
-json
+**响应**:
+
+```json
 {
   "posts": [
     {
@@ -199,100 +209,104 @@ json
     }
   ]
 }
-4. 创建文章
-URL: POST /posts
+```
+### 4. 创建文章
+**URL**: ```POST /posts```
 
-认证: Bearer Token 需要
+**认证**: Bearer Token 需要
 
-Headers: Authorization: Bearer <jwt-token>
+**Headers**: ```Authorization: Bearer <jwt-token>```
 
-Body:
+**请求体**:
 
-json
+```json
 {
   "title": "新文章标题",
   "content": "文章内容..."
 }
-5. 更新文章
-URL: PUT /posts/:id
+```
+### 5. 更新文章
+**URL**: ```PUT /posts/:id```
 
-认证: Bearer Token 需要（仅作者可操作）
+**认证**: Bearer Token 需要（仅作者可操作）
 
-6. 删除文章
-URL: DELETE /posts/:id
+### 6. 删除文章
+**URL**: ```DELETE /posts/:id```
 
-认证: Bearer Token 需要（仅作者可操作）
+**认证**: Bearer Token 需要（仅作者可操作）
 
-评论接口
-7. 创建评论
-URL: POST /comments
+## 评论接口
+### 7. 创建评论
+**URL**: ```POST /comments```
 
-认证: Bearer Token 需要
+**认证**: Bearer Token 需要
 
-Body:
+**请求体**:
 
-json
+```json
 {
   "content": "这是一条评论",
   "post_id": 1
 }
-8. 获取文章评论
-URL: GET /posts/:id/comments
+```
+### 8. 获取文章评论
+**URL**: ```GET /posts/:id/comments```
 
-认证: 不需要
+**认证**: 不需要
 
-🔧 Postman 测试指南
-导入 Postman 集合
-下载 Postman Collection JSON 文件
+# 🔧 Postman 测试指南
+## 导入 Postman 集合
+1. 下载 Postman Collection JSON 文件
 
-打开 Postman → Import → 选择文件
+2. 打开 Postman → Import → 选择文件
 
-导入后设置环境变量：
+3. 导入后设置环境变量：
 
-base_url: http://localhost:9090
+- ```base_url```: ```http://localhost:9090```
 
-token: (登录后自动设置)
+- ```token```: (登录后自动设置)
 
-测试流程
-步骤 1: 用户注册
-执行 "用户注册" 请求
+# 测试流程
+## 步骤 1: 用户注册
+1. 执行 "用户注册" 请求
 
-检查响应状态码是否为 201
+2. 检查响应状态码是否为 201
 
-步骤 2: 用户登录
-执行 "用户登录" 请求
+## 步骤 2: 用户登录
+1. 执行 "用户登录" 请求
 
-复制响应中的 token 值
+2. 复制响应中的 ```token``` 值
 
-在环境变量中设置 token 变量
+3. 在环境变量中设置 ```token``` 变量
 
-步骤 3: 创建文章
-执行 "创建文章" 请求
+## 步骤 3: 创建文章
+1. 执行 "创建文章" 请求
 
-检查响应状态码是否为 201
+2. 检查响应状态码是否为 201
 
-记录返回的文章 ID
+3. 记录返回的文章 ID
 
-步骤 4: 获取文章列表
-执行 "获取文章列表" 请求
+## 步骤 4: 获取文章列表
+1. 执行 "获取文章列表" 请求
 
-验证返回的文章数据
+2. 验证返回的文章数据
 
-步骤 5: 添加评论
-执行 "创建评论" 请求
+## 步骤 5: 添加评论
+1. 执行 "创建评论" 请求
 
-使用步骤3中获取的文章ID
+2. 使用步骤3中获取的文章ID
 
-步骤 6: 测试权限控制
-注册第二个用户并获取token
+## 步骤 6: 测试权限控制
+1. 注册第二个用户并获取token
 
-尝试修改/删除第一个用户的文章
+2. 尝试修改/删除第一个用户的文章
 
-应该返回 403 状态码
+3. 应该返回 403 状态码
 
-测试用例示例
-bash
-# 1. 注册用户
+# 测试用例示例
+## 1. 注册用户
+
+```bash
 curl -X POST http://localhost:9090/auth/register \
   -H "Content-Type: application/json" \
   -d '{
@@ -300,16 +314,20 @@ curl -X POST http://localhost:9090/auth/register \
     "password": "testpass123",
     "email": "test@example.com"
   }'
+```
+### 2. 用户登录
 
-# 2. 用户登录
+```bash
 curl -X POST http://localhost:9090/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "username": "testuser",
     "password": "testpass123"
   }'
+```
+### 3. 创建文章 (使用上一步获取的token)
 
-# 3. 创建文章 (使用上一步获取的token)
+```bash
 curl -X POST http://localhost:9090/posts \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
@@ -317,11 +335,15 @@ curl -X POST http://localhost:9090/posts \
     "title": "测试文章",
     "content": "这是测试文章的内容"
   }'
+```
+### 4. 获取文章列表
 
-# 4. 获取文章列表
+```bash
 curl -X GET http://localhost:9090/posts
+```
+### 5. 添加评论
 
-# 5. 添加评论
+```bash
 curl -X POST http://localhost:9090/comments \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
@@ -329,11 +351,12 @@ curl -X POST http://localhost:9090/comments \
     "content": "这是一条测试评论",
     "post_id": 1
   }'
-🗄 数据库配置
-表结构
-users 表
+```
+# 🗄 数据库配置
+## 表结构
+**users 表**
 
-sql
+```sql
 CREATE TABLE users (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(50) UNIQUE NOT NULL,
@@ -342,9 +365,10 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-posts 表
+```
+**posts 表**
 
-sql
+```sql
 CREATE TABLE posts (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(200) NOT NULL,
@@ -354,9 +378,10 @@ CREATE TABLE posts (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-comments 表
+```
+**comments 表**
 
-sql
+```sql
 CREATE TABLE comments (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   content TEXT NOT NULL,
@@ -366,73 +391,90 @@ CREATE TABLE comments (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
 );
-🔒 安全特性
-JWT Token 认证
+```
+# 🔒 安全特性
+## JWT Token 认证
 
-密码 bcrypt 加密
+- 密码 bcrypt 加密
 
-SQL 注入防护（GORM 参数化查询）
+- SQL 注入防护（GORM 参数化查询）
 
-CORS 中间件支持
+- CORS 中间件支持
 
-请求频率限制（可扩展）
+- 请求频率限制（可扩展）
 
-🐛 故障排除
-常见问题
-数据库连接失败
+# 🐛 故障排除
+## 常见问题
+### 1. 数据库连接失败
 
-检查 MySQL 服务是否运行
+- 检查 MySQL 服务是否运行
 
-验证数据库配置信息
+- 验证数据库配置信息
 
-确认数据库用户权限
+- 确认数据库用户权限
 
-Swagger 文档无法访问
+### 2. Swagger 文档无法访问
 
-运行 swag init 重新生成文档
+- 运行 swag init 重新生成文档
 
-检查 docs 文件夹是否存在
+- 检查 docs 文件夹是否存在
 
-JWT 认证失败
+### 3. JWT 认证失败
 
-检查 Token 是否过期（默认24小时）
+- 检查 Token 是否过期（默认24小时）
 
-验证 JWT Secret 配置
+- 验证 JWT Secret 配置
 
-端口占用
+### 4. 端口占用
 
-修改 SERVER_PORT 环境变量
+- 修改 SERVER_PORT 环境变量
 
-杀死占用端口的进程
+- 杀死占用端口的进程
 
-日志查看
+# 日志查看
 应用运行日志会输出到控制台，包含：
 
-请求方法、路径、状态码、响应时间
+- 请求方法、路径、状态码、响应时间
 
-错误信息和堆栈跟踪
+- 错误信息和堆栈跟踪
 
-数据库查询日志（开发环境）
+- 数据库查询日志（开发环境）
 
-📝 开发指南
-添加新的 API 端点
-在对应的控制器中添加处理方法
+# 📝 开发指南
+## 添加新的 API 端点
+1. 在对应的控制器中添加处理方法
 
-添加 Swagger 注释
+2. 添加 Swagger 注释
 
-在 main.go 中注册路由
+3. 在 main.go 中注册路由
 
-运行 swag init 更新文档
+4. 运行 swag init 更新文档
 
-数据库迁移
-bash
+# 数据库迁移
+```bash
 # 自动迁移（开发环境）
 go run main.go --migrate
 
 # 或直接在代码中调用
 database.DB.AutoMigrate(&models.User{}, &models.Post{}, &models.Comment{})
-📄 许可证
+```
+# 📄 许可证
 MIT License
 
-🤝 贡献
+# 🤝 贡献
 欢迎提交 Issue 和 Pull Request！
+
+# 📝 变更日志
+
+## [v1.0.0] - 2025-11-06
+#### 初始发布
+- 用户注册和登录系统
+- JWT 令牌认证
+- 博客文章 CRUD 操作
+- 基础评论功能
+- 权限控制系统
+---
+
+**维护者**: Charlie  
+**联系方式**: charliehuangx@163.com 
+**项目地址**: https://github.com/XinCharlie/GoBlogService
