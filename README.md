@@ -65,8 +65,8 @@ GoBlogService/
 
 1. **克隆项目**
    ```bash
-   git clone <repository-url>
-   cd blog-backend
+   git clone https://github.com/XinCharlie/GoBlogService
+   cd GoBlogService
    ```
 2. **安装依赖**
    ```bash
@@ -476,5 +476,5 @@ MIT License
 ---
 
 **维护者**: Charlie  
-**联系方式**: charliehuangx@163.com 
+**联系方式**: charliehuangx@163.com   
 **项目地址**: https://github.com/XinCharlie/GoBlogService
